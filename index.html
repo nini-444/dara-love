@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Dara ❤️</title>
+<style>
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: #fff0f5;
+  color: #742b45;
+  text-align: center;
+}
+section {
+  padding: 55px 20px;
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1 { font-size: 44px; }
+h2 { font-size: 30px; }
+button {
+  background: #c83e68;
+  color: white;
+  border: 0;
+  padding: 14px 22px;
+  border-radius: 25px;
+  font-size: 16px;
+  margin: 10px;
+}
+input {
+  padding: 13px;
+  border: 1px solid pink;
+  border-radius: 12px;
+  font-size: 16px;
+}
+.card {
+  background: white;
+  border-radius: 22px;
+  padding: 25px;
+  max-width: 500px;
+  box-shadow: 0 5px 25px #eab0c5;
+}
+#love { display: none; }
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  max-width: 450px;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 15px;
+}
+.letter {
+  line-height: 1.9;
+  max-width: 600px;
+}
+</style>
+</head>
+<body>
+
+<section id="welcome">
+  <div class="card">
+    <div style="font-size:65px">🌹🌹🌹</div>
+    <h1>For Dara ❤️</h1>
+    <p>A little surprise, made with all my heart.</p>
+    <p>From Nishant, with love.</p>
+    <button onclick="openLock()">Open your surprise 💌</button>
+  </div>
+</section>
+
+<section id="lock" style="display:none">
+  <div class="card">
+    <h2>Our little secret 🔐</h2>
+    <p>Enter our special word, my love.</p>
+    <input id="word" type="password" placeholder="Secret word">
+    <button onclick="unlock()">Unlock ❤️</button>
+    <p id="error"></p>
+  </div>
+</section>
+
+<div id="love">
+  <section>
+    <div style="font-size:65px">🌹💗🌹</div>
+    <h1>My dearest Dara</h1>
+    <p>You are my favourite part of this beautiful world.</p>
+    <p>Every rose reminds me of how beautiful you make life feel.</p>
+    <button onclick="document.getElementById('memories').scrollIntoView({behavior:'smooth'})">
+      Our memories 📸
+    </button>
+  </section>
+
+  <section id="memories">
+    <h2>Our little memories 💕</h2>
+    <p>Add our pictures to these frames when you're ready.</p>
+    <div class="gallery">
+      <label>🌸 Photo 1<input type="file" accept="image/*" onchange="showPhoto(this,0)"></label>
+      <label>🌸 Photo 2<input type="file" accept="image/*" onchange="showPhoto(this,1)"></label>
+      <label>🌹 Photo 3<input type="file" accept="image/*" onchange="showPhoto(this,2)"></label>
+      <label>🌹 Photo 4<input type="file" accept="image/*" onchange="showPhoto(this,3)"></label>
+    </div>
+    <div class="gallery" id="photos"></div>
+  </section>
+
+  <section>
+    <div class="card letter">
+      <h2>To my Dara 💌</h2>
+      My dearest Dara,<br><br>
+      If I could give you one thing in this world, I would give you the
+      chance to see yourself through my eyes. Then you would understand
+      how special you are to me, how your smile brightens my days, and
+      how even the smallest moments with you become precious memories.<br><br>
+
+      I cannot promise that every day will be perfect, but I want to keep
+      choosing you through the easy days and the difficult ones. I want
+      to listen to you, support your dreams, celebrate your happiness,
+      and remind you that you never have to be perfect to be loved.<br><br>
+
+      Thank you for being you. In this huge world, you have become one
+      of my favourite reasons to smile. If I had a thousand chances to
+      find someone to love, I would hope every path led me to you.<br><br>
+
+      Forever sending you all my love,<br>
+      Your Nishant ❤️
+    </div>
+  </section>
+
+  <section>
+    <div style="font-size:70px">🌹❤️🌹</div>
+    <h1>Always you, Dara.</h1>
+    <p>I love you, today and every day.</p>
+    <p>— Nishant 💌</p>
+  </section>
+</div>
+
+<script>
+// Change this to your own secret word:
+const SECRET = "moonrose";
+
+function openLock() {
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("lock").style.display = "flex";
+}
+function unlock() {
+  if (document.getElementById("word").value.trim().toLowerCase() === SECRET) {
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("love").style.display = "block";
+  } else {
+    document.getElementById("error").textContent = "Try again, my love 💗";
+  }
+}
+function showPhoto(input, index) {
+  if (!input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    let img = document.getElementById("photo" + index);
+    if (!img) {
+      img = document.createElement("img");
+      img.id = "photo" + index;
+      document.getElementById("photos").appendChild(img);
+    }
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+</script>
+</body>
+</html>
